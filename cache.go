@@ -15,14 +15,13 @@ func NewCache() Cache {
 	return Cache{make(map[string]Element)}
 }
 
-func (c Cache) Get(key string) (string, bool) {
-	elem := c.e[key].v
+func (c *Cache) Get(key string) (string, bool) {
 
 	if c.e[key].deadline.After(time.Now()) {
-		return elem, true
+		return c.e[key].v, true
 	} else {
 		delete(c.e, key)
-		return elem, false
+		return "", false
 	}
 
 }
