@@ -34,7 +34,7 @@ func (c *Cache) Put(key, value string) {
 }
 
 func (c *Cache) Keys() []string {
-	keys := make([]string, 10)
+	keys := make([]string, 0)
 	for i := range c.e {
 		if c.e[i].deadline.After(time.Now()) {
 			keys = append(keys, i)
